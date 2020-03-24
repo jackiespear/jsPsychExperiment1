@@ -6,8 +6,8 @@
         <meta name="description" content="A psychology recognition memory experiment"/>
         <script src="jspsych-6.1.0/jspsych.js"></script>
         <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6-2/plugins/jspsych-external-html.js"></script>
-        <script src="jspsych-6-2/plugins/jspsych-fullscreen.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-external-html.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
         <script src='stimuli/exp_text.js'></script>
         <script src='stimuli/study_words.js'></script>
         <script src='stimuli/test_words.js'></script>
@@ -22,6 +22,9 @@
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
 
 <!-- enter some javascript code-->
 <script type="text/javascript">
@@ -87,6 +90,22 @@ jsPsych.data.addProperties({
   subject: subject_id,
   StartTime: start_time,
 });
+    
+ // function to check if in fullscreen mode
+  function is_fullscreen(){
+  // check if in fullscreen mode
+  if(window.innerWidth == screen.width && window.innerHeight == screen.height){
+    return true;
+  }else{return false}
+  }
+
+  function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+  }
 
 // set up consent procedure
 var consent = {
@@ -150,14 +169,15 @@ var study_phase = {
     timeline: [
         {
             type: 'html-keyboard-response',
-            stimulus: jsPsych.timelineVariable('studywords'),
+            stimulus: jsPsych.timelineVariable('stimulus'),
             choices: jsPsych.NO_KEYS,
-            data: {"phase": "studyphase",
+            data: jsPsych.timelineVariable("data"),
             trial_duration: 2000, // words will appear for 2 seconds
             post_trial_gap: 500 // like a blank 500
         }
     ],
-    randomize_order: true
+    randomize_order: true,
+    timeline_variables: studywords,
 };
 
 //test phase instructions presented after study phase is over
@@ -170,34 +190,20 @@ var test_instructions = {
 };
 
 //Present the test words
-var test_phase = [];
-for (var i in testwords){
-  test_phase.push({
-    type: 'html-keyboard-response',
-    stimulus: ['<p style="text-algin:center; font-size:32px;">'+testwords[i]+'</p>'],
-    choices: ['y', 'n'],
-    is_html: true,
-    response_ends_trial:true,
-    trial_duration: 2000, // words will appear for 2 seconds
-    post_trial_gap: 500, // like a blank 500
-    data: {phase: 'testphase'}
-  } ),
-};
-
-/*Present the test words
 var test_phase = {
     timeline: [
         {
             type: 'html-keyboard-response',
-            stimulus: jsPsych.timelineVariable('testwords'),
+            stimulus: jsPsych.timelineVariable('stimulus'),
             choices: ['y', 'n'],
-            response_ends_trial: true,
-            trial_duration: 2000, // words will appear for 2 seconds
+            data: jsPsych.timelineVariable("data"),
+            response_ends_trial:true,
             post_trial_gap: 500 // like a blank 500
         }
     ],
+    randomize_order: true,
+    timeline_variables: testwords,
 };
-*/
 
 // set up debrief block
 var debrief = {
