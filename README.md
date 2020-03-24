@@ -1,6 +1,6 @@
 # A Random Word Experiment 
 
-A word recognition experiment, with completely random words derived from TASA.
+A word recognition experiment, with completely random words derived from TASA. Programmed with jsPsych.
 
 ## Purpose
 
