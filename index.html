@@ -90,6 +90,22 @@ jsPsych.data.addProperties({
   subject: subject_id,
   StartTime: start_time,
 });
+    
+ // function to check if in fullscreen mode
+  function is_fullscreen(){
+  // check if in fullscreen mode
+  if(window.innerWidth == screen.width && window.innerHeight == screen.height){
+    return true;
+  }else{return false}
+  }
+
+  function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+  }
 
 // set up consent procedure
 var consent = {
