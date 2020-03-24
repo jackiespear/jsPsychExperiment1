@@ -190,34 +190,20 @@ var test_instructions = {
 };
 
 //Present the test words
-var test_phase = [];
-for (var i in testwords){
-  test_phase.push({
-    type: 'html-keyboard-response',
-    stimulus: ['<p style="text-algin:center; font-size:32px;">'+testwords[i]+'</p>'],
-    choices: ['y', 'n'],
-    is_html: true,
-    response_ends_trial:true,
-    trial_duration: 2000, // words will appear for 2 seconds
-    post_trial_gap: 500, // like a blank 500
-    data: {"phase": "testphase"}
-  });
-};
-
-/*Present the test words
 var test_phase = {
     timeline: [
         {
             type: 'html-keyboard-response',
-            stimulus: jsPsych.timelineVariable('testwords'),
+            stimulus: jsPsych.timelineVariable('stimulus'),
             choices: ['y', 'n'],
-            response_ends_trial: true,
-            trial_duration: 2000, // words will appear for 2 seconds
+            data: jsPsych.timelineVariable("data"),
+            response_ends_trial:true,
             post_trial_gap: 500 // like a blank 500
         }
     ],
+    randomize_order: true,
+    timeline_variables: testwords,
 };
-*/
 
 // set up debrief block
 var debrief = {
