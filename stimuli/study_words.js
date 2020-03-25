@@ -1,5 +1,5 @@
 studywords = [
-{"stimulus":"<p style="font-size: 48px;">FERRYBOAT</p>","data":{"type":"old"}},
+{"stimulus":"<p style="font-size: 66px;">FERRYBOAT</p>","data":{"type":"old"}},
 {"stimulus":"SHAG","data":{"type":"old"}},
 {"stimulus":"SHIVAH","data":{"type":"old"}},
 {"stimulus":"WHOOPED","data":{"type":"old"}},
