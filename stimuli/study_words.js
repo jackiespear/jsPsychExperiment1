@@ -1,6 +1,6 @@
 studywords = 
   [
-  <p style="font-size: 48px;">
+  <p style="font-size: 66px;">
 {"stimulus":"FERRYBOAT","data":{"type":"old"}},
 {"stimulus":"SHAG","data":{"type":"old"}},
 {"stimulus":"SHIVAH","data":{"type":"old"}},
