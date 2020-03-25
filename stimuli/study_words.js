@@ -1,4 +1,6 @@
-studywords = [
+studywords = 
+  [
+  <p style="font-size: 48px;">
 {"stimulus":"FERRYBOAT","data":{"type":"old"}},
 {"stimulus":"SHAG","data":{"type":"old"}},
 {"stimulus":"SHIVAH","data":{"type":"old"}},
@@ -95,4 +97,5 @@ studywords = [
 {"stimulus":"SIAMESE","data":{"type":"old"}},
 {"stimulus":"JACKKNIFING","data":{"type":"old"}},
 {"stimulus":"GILT","data":{"type":"old"}},
-]
+  </p> 
+] 
