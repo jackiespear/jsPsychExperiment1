@@ -84,6 +84,14 @@ var subject_id = jsPsych.randomization.randomID(15);
 // get the id number for the SONA participant so that we can grant credits automatically
 var SONA_ID = getUrlParam('id','Empty');
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
 // Get the time that the experiment began (ms since 1 January 1970)
 var start_time = new Date().getTime();
 
